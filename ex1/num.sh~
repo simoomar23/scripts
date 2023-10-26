@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $# -lt 2 ]
+then
+    echo bla bla
+    ./readme.sh
+    exit 0
+fi	
+op=$1
+for x in $op
+do
+    op=$x
+    break
+done
+echo $op
