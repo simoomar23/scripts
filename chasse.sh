@@ -21,4 +21,10 @@ identify_rep() {
     done
     echo "$base/$rep"
 }
-identify_rep $( filtrage )
+find_itineraries() {
+    find $1 -type f -name "*Itineraire*"
+}
+
+rep=$( identify_rep $( filtrage ) )
+find_itineraries $rep
+
