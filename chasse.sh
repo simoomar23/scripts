@@ -5,20 +5,20 @@ filtrage() {
     
 }
 identify_rep() {
+    rep=""
+    s=0
     for i in $*  
     do
 	if [ -d $base/$i ]
 	then
-	   echo $i
+	    if [ $s -lt $(du -s $base/$i | awk '{print $1}') ]
+	    then
+		rep="$i"
+		s=$(du -s $base/$i | awk '{print $1}')
+	    fi
 	fi
+	
     done
-    
+    echo "$base/$rep"
 }
-
-find_itineraries() {
-    find $1 -type f -name "Itineraire"
-}
-
-rep=$( identify_rep $( filtrage ) )
-find_itineraries $rep
- 
+identify_rep $( filtrage )
