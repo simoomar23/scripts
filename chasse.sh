@@ -31,11 +31,13 @@ find_signature() {
     do
 	if grep -q "Bilbon" "$x"
 	then
-	    echo "$x"
+	    a=$( cat $x | grep "à" | sort | head -n 3 | sed 's/./& /g' | awk '{print $1}' | tr -d '\n')
+	    echo "$a"
 	fi
     done
 }	       
 
 rep=$( identify_rep $( filtrage ) )
 find_signature $( find_itineraries $rep )
+
 
