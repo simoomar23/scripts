@@ -25,6 +25,17 @@ find_itineraries() {
     find $1 -type f -name "*Itineraire*"
 }
 
+
+find_signature() {
+    for x in $*
+    do
+	if grep -q "Bilbon" "$x"
+	then
+	    echo "$x"
+	fi
+    done
+}	       
+
 rep=$( identify_rep $( filtrage ) )
-find_itineraries $rep
+find_signature $( find_itineraries $rep )
 
