@@ -1,7 +1,7 @@
                            "git instructions"
 [[[ remove the last push ]]]
-git reset --soft Head^
-git push --force
+git reset --soft Head^ ( removes last commit )
+git push --force ( pushes the changes )
 [[[ Commits History ]]]
 git glog
 [[[ going to the commit "name" ]]]
@@ -10,3 +10,4 @@ git push --force
 
 [[[ remove a git file ]]]
 git rm file ( will be removed in the next commit )
+git commit -m "bla bla"
