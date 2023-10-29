@@ -1,3 +1,4 @@
+                           "git instructions"
 [[[ remove the last push ]]]
 git reset --soft Head^
 git push --force
