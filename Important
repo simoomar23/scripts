@@ -1,0 +1,11 @@
+[[[ remove the last push ]]]
+git reset --soft Head^
+git push --force
+[[[ Commits History ]]]
+git glog
+[[[ going to the commit "name" ]]]
+git reset --soft name
+git push --force
+
+[[[ remove a git file ]]]
+git rm file ( will be removed in the next commit )
