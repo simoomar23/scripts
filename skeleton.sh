@@ -1,13 +1,18 @@
 #!/bin/bash
-function bash_gen(){
-echo '#!/bin/sh/env bash
+nm=$1
+date=$(date)
+function entete(){
+echo "#!/bin/sh/env bash
 #
-# @filename monfichier.sh
-# @date 2019-10-18 15:13
+# @filename "$nm"."$1"
+# @date "$date"
 # @author Prenom Nom <prenom.nom@enseirb-matmeca.fr>
 # @brief ...
-#
+#">$nm
+}
 
+function bash_gen(){
+echo "
 CMD=$( basename $0 )
 nbminparams=1
 
@@ -20,10 +25,10 @@ if [ $# -lt $nbminparams ]
 then
 	usage
 	exit 1
-fi'>$1
+fi">>$1
 }
 function c_gen(){
-echo '#include <stdlib.h>
+echo "#include <stdlib.h>
 #include <stdio.h>
 
 #define _NB_MIN_PARAMS_1
@@ -38,16 +43,10 @@ int main( int argc, char *argv[] )
        return EXIT_FAILURE;
        }
        return EXIT_SUCCESS;
-}'>$1
+}">>$1
 }
 function tex_gen(){
-echo '%%
-%% @filename monfichier.tex
-%% @date 2019-10-18 15:13
-%% @author Prenom Nom <prenom.nom@enseirb-matmeca.fr>
-%% @brief ...
-%%
-\documentclass[a4paper, draft]{article}
+echo "\documentclass[a4paper, draft]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel} 
@@ -75,14 +74,16 @@ echo '%%
 \begin{document}
 
 
-\end{document}'>$1
+\end{document}">>$1
 }
 case $2 in
     "tex")
+	entete $2
 	tex_gen $1;;
     "c")
+	entete $2
 	c_gen $1;;
     "sh")
+	entete $2
 	bash_gen $1;;
 esac
-
